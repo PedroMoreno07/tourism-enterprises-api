@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Este repositório contém o desenvolvimento de uma API RESTful voltada à gestão de empreendimentos turísticos. A plataforma permite o cadastro, consulta, atualização e exclusão (CRUD) de dados relacionados a empresas e serviços turísticos, como hotéis, agências de viagem, atrativos turísticos e outros.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch src/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,10 @@
   },
   "homepage": "https://github.com/PedroMoreno07/tourism-enterprises-api#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "express": "^5.1.0",
-    "sqlite3": "^5.1.7"
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7",
+    "zod": "^3.24.4"
   }
 }
