@@ -10,7 +10,6 @@ export function authenticate(req, res, next) {
   try {
     const decode = verifyToken(token);
     req.user = decode;
-    res.send(decode);
     next();
   } catch (error) {
     return res.status(403).json({
