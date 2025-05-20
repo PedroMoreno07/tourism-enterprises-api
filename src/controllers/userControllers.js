@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { comparePassword, generateToken, hashed } from "../utils/auth.js";
+import { authenticate } from "../middleware/authentication.js";
 const prisma = new PrismaClient();
 
 export const register = async (req, res) => {
@@ -111,6 +112,7 @@ export const login = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Erro ao fazer o login!",
+      error,
     });
   }
 };

@@ -1,6 +1,6 @@
 import { verifyToken } from "../utils/auth.js";
 export function authenticate(req, res, next) {
-  const authHeader = req.headers["Authorization"];
+  const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) {
     return res.status(401).json({
@@ -10,6 +10,7 @@ export function authenticate(req, res, next) {
   try {
     const decode = verifyToken(token);
     req.user = decode;
+    res.send(decode);
     next();
   } catch (error) {
     return res.status(403).json({
