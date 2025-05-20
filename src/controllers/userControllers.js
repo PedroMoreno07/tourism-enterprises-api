@@ -78,7 +78,7 @@ export const login = async (req, res) => {
         usuario: {
           name: user.name,
           email: user.email,
-          message: `Bem-Vindo USUÁRIO!`,
+          message: `Bem-Vindo usuário ${user.name}`,
         },
         token,
       });
@@ -100,7 +100,7 @@ export const login = async (req, res) => {
         usuario: {
           name: admin.name,
           email: admin.email,
-          message: `Bem-Vindo ADMIN!`,
+          message: `Bem-Vindo administrador ${admin.name}`,
         },
         token,
       });

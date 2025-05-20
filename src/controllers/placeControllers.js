@@ -9,7 +9,7 @@ export const createPlace = async (req, res) => {
         name,
         description,
         address,
-        type,
+        type: type.toLowerCase(),
         rating,
       },
     });
@@ -33,6 +33,25 @@ export const getAllPlaces = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       mensagem: "Locais não encontrado",
+      erro: error.message,
+    });
+  }
+};
+
+export const getPlaceByType = async (req, res) => {
+  try {
+    const { type } = req.params;
+    const place = await prisma.place.findFirst({
+      where: { type },
+    });
+
+    if (!place) {
+      return res.status(401).json({ message: "Filtro inexistente!" });
+    }
+    res.status(200).json({ place });
+  } catch (error) {
+    res.status(500).json({
+      mensagem: "Filtragem não encontrada",
       erro: error.message,
     });
   }

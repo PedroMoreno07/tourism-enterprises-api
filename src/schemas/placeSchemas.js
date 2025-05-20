@@ -4,7 +4,7 @@ export const placeCreateSchemas = z.object({
   name: z.string(),
   description: z
     .string()
-    .min(100, "Sua descrição deve ter no minímo 100 caracteres!"),
+    .max(100, "Sua descrição deve ter no maximo 100 caracteres!"),
   address: z.object({
     logradouro: z.string(),
     numero: z.number(),
