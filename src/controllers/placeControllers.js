@@ -6,9 +6,9 @@ export const createPlace = async (req, res) => {
   try {
     const newPlace = await prisma.place.create({
       data: {
-        name,
+        name: name.toLowerCase(),
         description,
-        address,
+        address: address.toLowerCase(),
         type: type.toLowerCase(),
         rating,
       },
@@ -52,6 +52,29 @@ export const getPlaceByType = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       mensagem: "Filtragem não encontrada",
+      erro: error.message,
+    });
+  }
+};
+
+export const updatePlace = async (req, res) => {
+  const id = req.params.id;
+  const { name, description, address, type, rating } = req.body;
+  try {
+    const place = await prisma.place.update({
+      where: { id: parseInt(id) },
+      data: {
+        name,
+        description,
+        address,
+        type,
+        rating,
+      },
+    });
+    res.status(200).json({ place });
+  } catch (error) {
+    res.status(400).json({
+      mensagem: "Error ao atualizar, usuario não encontrado!",
       erro: error.message,
     });
   }

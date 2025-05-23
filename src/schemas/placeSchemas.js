@@ -14,3 +14,19 @@ export const placeCreateSchemas = z.object({
   type: z.string(),
   rating: z.number().min(0).max(5),
 });
+
+export const placeUpdateSchemas = z.object({
+  name: z.string().optional(),
+  description: z
+    .string()
+    .max(100, "Sua descrição deve ter no maximo 100 caracteres!")
+    .optional(),
+  address: z.object({
+    logradouro: z.string().optional(),
+    numero: z.number().optional(),
+    bairro: z.string().optional(),
+    complemento: z.string().optional(),
+  }),
+  type: z.string().optional(),
+  rating: z.number().min(0).max(5).optional(),
+});
