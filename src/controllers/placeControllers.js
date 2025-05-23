@@ -8,7 +8,7 @@ export const createPlace = async (req, res) => {
       data: {
         name: name.toLowerCase(),
         description,
-        address: address.toLowerCase(),
+        address,
         type: type.toLowerCase(),
         rating,
       },
@@ -75,6 +75,26 @@ export const updatePlace = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       mensagem: "Error ao atualizar, usuario não encontrado!",
+      erro: error.message,
+    });
+  }
+};
+
+export const deletePlace = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const place = await prisma.place.findUnique({
+      where: { id: parseInt(id) },
+    });
+    await prisma.place.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    res.status(200).json({ message: `${place.name} deletado!` });
+  } catch (error) {
+    res.status(400).json({
+      mensagem: "Error ao deletar, usuario não encontrado!",
       erro: error.message,
     });
   }

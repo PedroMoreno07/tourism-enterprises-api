@@ -6,6 +6,7 @@ import {
 } from "../schemas/placeSchemas.js";
 import {
   createPlace,
+  deletePlace,
   getAllPlaces,
   getPlaceByType,
   updatePlace,
@@ -19,5 +20,6 @@ router.post("/", isAdmin, validate(placeCreateSchemas), createPlace);
 router.get("/", authenticate, getAllPlaces);
 router.get("/:type", authenticate, getPlaceByType);
 router.put("/:id", isAdmin, validate(placeUpdateSchemas), updatePlace);
+router.delete("/:id", isAdmin, deletePlace);
 
 export default router;
