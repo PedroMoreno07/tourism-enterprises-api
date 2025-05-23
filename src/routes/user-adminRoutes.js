@@ -10,6 +10,7 @@ import {
   registerUserSchema,
 } from "../schemas/userSchemas.js";
 import { validate } from "../middleware/validate.js";
+import { authenticate } from "../middleware/authentication.js";
 
 const router = express.Router();
 router.post("/register", validate(registerUserSchema), register);
