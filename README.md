@@ -206,7 +206,7 @@ PUT /places/:id - Atualizar Local Por Id
 **DELETE PLACE**
 
 ```markdown
-PUT /places/:id - Deletar Local Por Id
+DELETE /places/:id - Deletar Local Por Id
 ```
 
 ```json
