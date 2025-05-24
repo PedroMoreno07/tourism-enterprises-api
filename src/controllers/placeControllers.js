@@ -41,7 +41,7 @@ export const getAllPlaces = async (req, res) => {
 export const getPlaceByType = async (req, res) => {
   try {
     const { type } = req.params;
-    const place = await prisma.place.findFirst({
+    const place = await prisma.place.findMany({
       where: { type },
     });
 
